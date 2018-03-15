@@ -1,5 +1,3 @@
-// totally not stolen code from elin magic 🤔
-
 'use strict'
 
 const fs = require('fs'),
@@ -23,18 +21,23 @@ class Awesomium {
 			let URL = url.parse(req.url, true),
 				hook = URL.query['hook']
 
+			console.log(URL)
 			if (hook) {
-				if (!this.hooks[hook]) throw new Error(`Awesomium hook ${hook} dont exist`)
+				let wait = this.hooks[hook]
+
+				if (!wait) throw new Error(`Awesomium hook ${hook} dont exist`)
+
+				let data = null
+
 				try {
-					await this.hooks[hook]
+					data = wait(JSON.parse(URL.query['args']))
+					console.log(data)
+					res.writeHead(200, { 'Content-Type': 'application/json' })
+					res.end(JSON.stringify(data))
 				} catch (e) {
 					console.error(e)
 				}
 
-				if (!res.finished) {
-					res.writeHead(200)
-					res.end()
-				}
 				return
 			}
 

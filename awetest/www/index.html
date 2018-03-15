@@ -1,0 +1,19 @@
+<html>
+
+<head>
+	<script>
+		indow.addEventListener('error', function (e) {
+			_tera_client_proxy_.alert('err: ' + e.message + ' ' + e.filename + ':' + e.lineno);
+		});
+
+		window.onload = function () {
+			_tera_client_proxy_.resize_to(250, 250);
+			_tera_client_proxy_.set_title('AWESOMIUM SHIT');
+		};
+	</script>
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="main.js"></script>
+	<div></div>
+</head>
+
+</html>
