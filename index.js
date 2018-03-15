@@ -21,7 +21,6 @@ class Awesomium {
 			let URL = url.parse(req.url, true),
 				hook = URL.query['hook']
 
-			console.log(URL)
 			if (hook) {
 				let wait = this.hooks[hook]
 
@@ -31,7 +30,6 @@ class Awesomium {
 
 				try {
 					data = wait(JSON.parse(URL.query['args']))
-					console.log(data)
 					res.writeHead(200, { 'Content-Type': 'application/json' })
 					res.end(JSON.stringify(data))
 				} catch (e) {
